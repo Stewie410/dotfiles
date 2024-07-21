@@ -1,0 +1,23 @@
+# vi: ft=i3config
+
+set_from_resource $BLACK            i3wm.color1     #000000
+set_from_resource $RED              i3wm.color1     #800000
+set_from_resource $GREEN            i3wm.color2     #008000
+set_from_resource $YELLOW           i3wm.color3     #808000
+set_from_resource $BLUE             i3wm.color4     #000080
+set_from_resource $PURPLE           i3wm.color5     #800080
+set_from_resource $CYAN             i3wm.color6     #008080
+set_from_resource $WHITE            i3wm.color7     #c0c0c0
+set_from_resource $BRIGHT_BLACK     i3wm.color8     #808080
+set_from_resource $BRIGHT_RED       i3wm.color9     #ff0000
+set_from_resource $BRIGHT_GREEN     i3wm.color10    #00ff00
+set_from_resource $BRIGHT_YELLOW    i3wm.color11    #ffff00
+set_from_resource $BRIGHT_BLUE      i3wm.color12    #0000ff
+set_from_resource $BRIGHT_PRUPLE    i3wm.color13    #ff00ff
+set_from_resource $BRIGHT_CYAN      i3wm.color14    #00ffff
+set_from_resource $BRIGHT_WHITE     i3wm.color15    #ffffff
+
+set_from_resource $BACKGROUND       i3wm.background     $BLACK
+set_from_resource $FOREGROUND       i3wm.foreground     $BRIGHT_WHITE
+set_from_resource $BORDER           i3wm.borderColor    $BRIGHT_BLACK
+set_from_resource $ACCENT           i3wm.cursorColor    $WHITE

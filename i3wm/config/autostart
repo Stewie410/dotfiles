@@ -1,0 +1,4 @@
+# vi: ft=i3config
+
+exec_always --no-startup-id ~/scripts/tools/autostart.sh
+exec_always --no-startup-id ~/scripts/polybar/polybar-start.sh

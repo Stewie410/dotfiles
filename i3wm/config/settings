@@ -1,0 +1,6 @@
+# vi: ft=i3config
+
+font pango:monospace 10
+floating_modifier $MOD
+focus_follows_mouse no
+hide_edge_borders smart

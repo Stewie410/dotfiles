@@ -1,0 +1,64 @@
+# vi: ft=i3config
+
+bindsym $MOD+h focus left
+bindsym $MOD+j focus down
+bindsym $MOD+k focus up
+bindsym $MOD+l focus right
+
+bindsym $MOD+Shift+h move left
+bindsym $MOD+Shift+j move down
+bindsym $MOD+Shift+k move up
+bindsym $MOD+Shift+l move right
+
+bindsym $MOD+F11 fullscreen toggle
+
+bindsym $MOD+backslash split toggle
+bindsym $MOD+Shift+s layout default
+bindsym $MOD+Shift+t layout tabbed
+bindsym $MOD+Shift+space floating toggle
+
+bindsym $MOD+1   workspace 1
+bindsym $MOD+2   workspace 2
+bindsym $MOD+3   workspace 3
+bindsym $MOD+4   workspace 4
+bindsym $MOD+5   workspace 5
+bindsym $MOD+6   workspace 6
+bindsym $MOD+7   workspace 7
+bindsym $MOD+8   workspace 8
+bindsym $MOD+9   workspace 9
+bindsym $MOD+0   workspace 10
+bindsym $MOD+Tab workspace back_and_forth
+
+bindsym $MOD+Shift+1 move container to workspace 1
+bindsym $MOD+Shift+2 move container to workspace 2
+bindsym $MOD+Shift+3 move container to workspace 3
+bindsym $MOD+Shift+4 move container to workspace 4
+bindsym $MOD+Shift+5 move container to workspace 5
+bindsym $MOD+Shift+6 move container to workspace 6
+bindsym $MOD+Shift+7 move container to workspace 7
+bindsym $MOD+Shift+8 move container to workspace 8
+bindsym $MOD+Shift+9 move container to workspace 9
+bindsym $MOD+Shift+0 move container to workspace 10
+
+bindsym $SUPER+Shift+r restart
+bindsym $SUPER+Shift+e exec i3-msg exit
+
+bindsym $SUPER+Shift+q          kill
+bindsym $SUPER+d                exec $LAUNCHER
+bindsym $SUPER+Return           exec $TERM
+bindsym $SUPER+Shift+Return     exec $TERM -e tmux
+bindsym $SUPER+F2               exec $BROWSER
+bindsym $SUPER+F3               exec $FILE_MANAGER ~/
+bindsym $SUPER+F8               exec $EMAIL
+
+bindsym $SUPER+Shift+Print      exec autoscrot.sh
+
+bindsym XF86AudioMute           exec pamixer --toggle-mute
+bindsym XF86AudioLowerVolume    exec pamixer --decrease 1
+bindsym XF86AudioRaiseVolume    exec pamixer --increase 1
+bindsym XF86AudioPrev           exec playerctl previous
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPlay           exec playerctl play-pause
+
+bindsym XF86MonBrightnessDown   exec xbrightness.sh --decrease 5
+bindsym XF86BrightnessUp        exec xbrightness.sh --increase 5

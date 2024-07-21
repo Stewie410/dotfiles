@@ -1,0 +1,11 @@
+! vi: ft=xdefaults
+
+URxvt*termName:         rxvt-unicode
+URxvt.depth:            32
+URxvt.scrollBar:        false
+URxvt.cursorBlink:      false
+URxvt.internalBorder:   1
+URxvt.font:             xft:FiraCode:pixelsize=14,\
+                        xft:monospace:pixelsize=16,\
+                        xft:FontAwesome:pixelsize=10:antialias=true,\
+                        xft:siji:pixelsize=10:antialias=true

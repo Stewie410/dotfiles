@@ -1,0 +1,46 @@
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
+
+#include "xorg/color/ayu/dark.Xresources"
+#define OPACITY_BACKGROUND 90
+
+#include "xorg/app/st.Xresources"
+#include "xorg/app/urxvt.Xresources"
+
+*foreground:        COLOR_FOREGROUND
+*background:        [OPACITY_BACKGROUND]COLOR_BACKGROUND
+*borderColor:       COLOR_BORDER
+*cursorColor:       COLOR_CURSOR
+
+*color0:            COLOR_00
+*color1:            COLOR_01
+*color2:            COLOR_02
+*color3:            COLOR_03
+*color4:            COLOR_04
+*color5:            COLOR_05
+*color6:            COLOR_06
+*color7:            COLOR_07
+*color8:            COLOR_08
+*color9:            COLOR_09
+*color10:           COLOR_10
+*color11:           COLOR_11
+*color12:           COLOR_12
+*color13:           COLOR_13
+*color14:           COLOR_14
+*color15:           COLOR_15
+*color16:           COLOR_09
+*color17:           COLOR_15
+*color18:           COLOR_01
+*color19:           COLOR_02
+*color20:           COLOR_04
+*color21:           COLOR_06
+
+*.font:                 xft:monospace:pixelsize=10
+Xft.dpi:                96
+Xft.antialias:          true
+Xft.autohint:           1
+Xft.hinting:            1
+Xft.hintstyle:          hintslight
+Xft.lcdfilter:          lcdlight
+Xft.rgba:               rgb

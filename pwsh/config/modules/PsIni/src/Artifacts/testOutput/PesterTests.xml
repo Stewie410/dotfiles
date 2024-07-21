@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="43" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2024-02-20" time="06:57:23">
+  <environment clr-version="4.0.30319.42000" user-domain="ALEX-WS" cwd="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit" platform="Microsoft Windows 10 Pro|C:\WINDOWS|\Device\Harddisk0\Partition2" machine-name="ALEX-WS" nunit-version="2.5.8.0" os-version="10.0.19045" user="Alex" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.0415" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\ExportedFunctions.Tests.ps1" executed="True" result="Success" success="True" time="0.1209" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\ExportedFunctions.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="PsIni" executed="True" result="Success" success="True" time="0.0357" asserts="0" description="PsIni">
+            <results>
+              <test-suite type="TestFixture" name="PsIni.Exported Commands" executed="True" result="Success" success="True" time="0.0299" asserts="0" description="PsIni.Exported Commands">
+                <results>
+                  <test-suite type="TestFixture" name="PsIni.Exported Commands.Number of commands" executed="True" result="Success" success="True" time="0.0247" asserts="0" description="PsIni.Exported Commands.Number of commands">
+                    <results>
+                      <test-case description="Exports the same number of public functions as what is listed in the Module Manifest" name="PsIni.Exported Commands.Number of commands.Exports the same number of public functions as what is listed in the Module Manifest" time="0.0192" asserts="0" success="True" result="Success" executed="True" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\PsIni-Module.Tests.ps1" executed="True" result="Success" success="True" time="0.1419" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\PsIni-Module.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Module Tests" executed="True" result="Success" success="True" time="0.1043" asserts="0" description="Module Tests">
+            <results>
+              <test-suite type="TestFixture" name="Module Tests.Module Tests" executed="True" result="Success" success="True" time="0.0948" asserts="0" description="Module Tests.Module Tests">
+                <results>
+                  <test-case description="Passes Test-ModuleManifest" name="Module Tests.Module Tests.Passes Test-ModuleManifest" time="0.0182" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="root module PsIni.psm1 should exist" name="Module Tests.Module Tests.root module PsIni.psm1 should exist" time="0.0078" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="manifest should contain PsIni.psm1" name="Module Tests.Module Tests.manifest should contain PsIni.psm1" time="0.0081" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a matching module name in the manifest" name="Module Tests.Module Tests.should have a matching module name in the manifest" time="0.0078" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a valid description in the manifest" name="Module Tests.Module Tests.should have a valid description in the manifest" time="0.0087" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a valid author in the manifest" name="Module Tests.Module Tests.should have a valid author in the manifest" time="0.0072" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a valid version in the manifest" name="Module Tests.Module Tests.should have a valid version in the manifest" time="0.0071" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a valid guid in the manifest" name="Module Tests.Module Tests.should have a valid guid in the manifest" time="0.0085" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should not have any spaces in the tags" name="Module Tests.Module Tests.should not have any spaces in the tags" time="0.0066" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="should have a valid project Uri" name="Module Tests.Module Tests.should have a valid project Uri" time="0.0073" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\ConvertFrom-Ini.Tests.ps1" executed="True" result="Success" success="True" time="0.1296" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\ConvertFrom-Ini.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="ConvertFrom-Ini Public Function Tests" executed="True" result="Success" success="True" time="0.0771" asserts="0" description="ConvertFrom-Ini Public Function Tests">
+            <results>
+              <test-suite type="TestFixture" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to hashtable" executed="True" result="Success" success="True" time="0.0258" asserts="0" description="ConvertFrom-Ini Public Function Tests.Converts from string[] to hashtable">
+                <results>
+                  <test-case description="Converts param array to hashtable" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to hashtable.Converts param array to hashtable" time="0.0131" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converts pipeline array to hashtable" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to hashtable.Converts pipeline array to hashtable" time="0.0067" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to valid hashtable" executed="True" result="Success" success="True" time="0.0715" asserts="0" description="ConvertFrom-Ini Public Function Tests.Converts from string[] to valid hashtable">
+                <results>
+                  <test-case description="Converts param array to valid hashtable" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to valid hashtable.Converts param array to valid hashtable" time="0.0203" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converts pipeline array to valid hashtable" name="ConvertFrom-Ini Public Function Tests.Converts from string[] to valid hashtable.Converts pipeline array to valid hashtable" time="0.0199" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\ConvertTo-Ini.Tests.ps1" executed="True" result="Success" success="True" time="0.1585" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\ConvertTo-Ini.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests" executed="True" result="Success" success="True" time="0.1153" asserts="0" description="ConvertTo-Ini Function Tests">
+            <results>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Fails on invalid input" executed="True" result="Success" success="True" time="0.032" asserts="0" description="ConvertTo-Ini Function Tests.Fails on invalid input">
+                <results>
+                  <test-case description="Throws when InputObject does not contain a &quot;NO_SECTION&quot; key" name="ConvertTo-Ini Function Tests.Fails on invalid input.Throws when InputObject does not contain a &quot;NO_SECTION&quot; key" time="0.0115" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Throws when InputObject keys do not contain a Comments array" name="ConvertTo-Ini Function Tests.Fails on invalid input.Throws when InputObject keys do not contain a Comments array" time="0.014" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Converts from hashtable to string[]" executed="True" result="Success" success="True" time="0.0625" asserts="0" description="ConvertTo-Ini Function Tests.Converts from hashtable to string[]">
+                <results>
+                  <test-case description="Converts param hashtable to array" name="ConvertTo-Ini Function Tests.Converts from hashtable to string[].Converts param hashtable to array" time="0.0141" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converts pipeline hashtable to array" name="ConvertTo-Ini Function Tests.Converts from hashtable to string[].Converts pipeline hashtable to array" time="0.0098" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Converts from hashtable to valid array" executed="True" result="Success" success="True" time="0.1089" asserts="0" description="ConvertTo-Ini Function Tests.Converts from hashtable to valid array">
+                <results>
+                  <test-case description="Converts param table to valid array with spaces" name="ConvertTo-Ini Function Tests.Converts from hashtable to valid array.Converts param table to valid array with spaces" time="0.0199" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converts pipeline table to valid array" name="ConvertTo-Ini Function Tests.Converts from hashtable to valid array.Converts pipeline table to valid array" time="0.0201" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\Export-Ini.Tests.ps1" executed="True" result="Success" success="True" time="0.336" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\Export-Ini.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests" executed="True" result="Success" success="True" time="0.2858" asserts="0" description="ConvertTo-Ini Function Tests">
+            <results>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Fails on invalid input" executed="True" result="Success" success="True" time="0.0443" asserts="0" description="ConvertTo-Ini Function Tests.Fails on invalid input">
+                <results>
+                  <test-case description="Throws when InputObject missing &quot;NO_SECTION&quot; section" name="ConvertTo-Ini Function Tests.Fails on invalid input.Throws when InputObject missing &quot;NO_SECTION&quot; section" time="0.0176" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Throws when InputObject missing Comments array" name="ConvertTo-Ini Function Tests.Fails on invalid input.Throws when InputObject missing Comments array" time="0.0102" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Throws when Path contains invalid characters" name="ConvertTo-Ini Function Tests.Fails on invalid input.Throws when Path contains invalid characters" time="0.0109" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Fails when file exists &amp; NoClobber" executed="True" result="Success" success="True" time="0.0677" asserts="0" description="ConvertTo-Ini Function Tests.Fails when file exists &amp; NoClobber">
+                <results>
+                  <test-case description="Prevent overwrites with -NoClobber" name="ConvertTo-Ini Function Tests.Fails when file exists &amp; NoClobber.Prevent overwrites with -NoClobber" time="0.0174" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Overwrites file contents" executed="True" result="Success" success="True" time="0.1059" asserts="0" description="ConvertTo-Ini Function Tests.Overwrites file contents">
+                <results>
+                  <test-case description="Convert param hashtable to string[] and overwrite file contents" name="ConvertTo-Ini Function Tests.Overwrites file contents.Convert param hashtable to string[] and overwrite file contents" time="0.0171" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Convert pipeline hashtable to string[] and overwrite file contents" name="ConvertTo-Ini Function Tests.Overwrites file contents.Convert pipeline hashtable to string[] and overwrite file contents" time="0.016" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Overwrites read-only file contents" executed="True" result="Success" success="True" time="0.1454" asserts="0" description="ConvertTo-Ini Function Tests.Overwrites read-only file contents">
+                <results>
+                  <test-case description="Convert param hashtable to string[] and overwrite read-only file contents" name="ConvertTo-Ini Function Tests.Overwrites read-only file contents.Convert param hashtable to string[] and overwrite read-only file contents" time="0.0155" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Convert pipeline hashtable to string[] and overwrite read-only file contents" name="ConvertTo-Ini Function Tests.Overwrites read-only file contents.Convert pipeline hashtable to string[] and overwrite read-only file contents" time="0.0146" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Appends to file contents" executed="True" result="Success" success="True" time="0.1767" asserts="0" description="ConvertTo-Ini Function Tests.Appends to file contents">
+                <results>
+                  <test-case description="Convert param hashtable to string[] and append to file" name="ConvertTo-Ini Function Tests.Appends to file contents.Convert param hashtable to string[] and append to file" time="0.014" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Convert pipeline hashtable to string[] and append to file" name="ConvertTo-Ini Function Tests.Appends to file contents.Convert pipeline hashtable to string[] and append to file" time="0.0116" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Appends to read-only file contents" executed="True" result="Success" success="True" time="0.2147" asserts="0" description="ConvertTo-Ini Function Tests.Appends to read-only file contents">
+                <results>
+                  <test-case description="Convert param hashtable to string[] and append to file" name="ConvertTo-Ini Function Tests.Appends to read-only file contents.Convert param hashtable to string[] and append to file" time="0.0197" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Convert pipeline hashtable to string[] and append to file" name="ConvertTo-Ini Function Tests.Appends to read-only file contents.Convert pipeline hashtable to string[] and append to file" time="0.0127" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ConvertTo-Ini Function Tests.Converts table with expected format" executed="True" result="Success" success="True" time="0.2756" asserts="0" description="ConvertTo-Ini Function Tests.Converts table with expected format">
+                <results>
+                  <test-case description="Converted param hashtable is expected content, with spaces" name="ConvertTo-Ini Function Tests.Converts table with expected format.Converted param hashtable is expected content, with spaces" time="0.0163" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converted pipeline hashtable is expected content, with spaces" name="ConvertTo-Ini Function Tests.Converts table with expected format.Converted pipeline hashtable is expected content, with spaces" time="0.0116" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converted param hashtable is expected content, without spaces" name="ConvertTo-Ini Function Tests.Converts table with expected format.Converted param hashtable is expected content, without spaces" time="0.0114" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converted pipeline hashtable is expected content, without spaces" name="ConvertTo-Ini Function Tests.Converts table with expected format.Converted pipeline hashtable is expected content, without spaces" time="0.0113" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\Import-Ini.Tests.ps1" executed="True" result="Success" success="True" time="0.1546" asserts="0" description="C:\Users\Alex\.config\pwsh\modules\PsIni\src\Tests\Unit\Public\Import-Ini.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Import-Ini Public Function Tests" executed="True" result="Success" success="True" time="0.1044" asserts="0" description="Import-Ini Public Function Tests">
+            <results>
+              <test-suite type="TestFixture" name="Import-Ini Public Function Tests.Fails on invalid path" executed="True" result="Success" success="True" time="0.032" asserts="0" description="Import-Ini Public Function Tests.Fails on invalid path">
+                <results>
+                  <test-case description="Throws when Path contains invalid characters" name="Import-Ini Public Function Tests.Fails on invalid path.Throws when Path contains invalid characters" time="0.0113" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Throws when Path does not exist" name="Import-Ini Public Function Tests.Fails on invalid path.Throws when Path does not exist" time="0.011" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Import-Ini Public Function Tests.Reads contents of Path and converts to hashtable" executed="True" result="Success" success="True" time="0.0545" asserts="0" description="Import-Ini Public Function Tests.Reads contents of Path and converts to hashtable">
+                <results>
+                  <test-case description="Reads param file path and converts to hashtable" name="Import-Ini Public Function Tests.Reads contents of Path and converts to hashtable.Reads param file path and converts to hashtable" time="0.01" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Reads pipeline file path and converts to hashtable" name="Import-Ini Public Function Tests.Reads contents of Path and converts to hashtable.Reads pipeline file path and converts to hashtable" time="0.0072" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Import-Ini Public Function Tests.Reads contents of Path and converts to a valid hashtable" executed="True" result="Success" success="True" time="0.0966" asserts="0" description="Import-Ini Public Function Tests.Reads contents of Path and converts to a valid hashtable">
+                <results>
+                  <test-case description="Converts Path param contents to valid hashtable" name="Import-Ini Public Function Tests.Reads contents of Path and converts to a valid hashtable.Converts Path param contents to valid hashtable" time="0.0209" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Converts Path pipeline contents to valid hashtable" name="Import-Ini Public Function Tests.Reads contents of Path and converts to a valid hashtable.Converts Path pipeline contents to valid hashtable" time="0.0155" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# shellcheck source=/dev/null
+
+get_session() {
+    case "${SESSION}" in
+        bspwm | budgie | cinnamon | gnome | lxqt | mate | xfce | openbox )
+            set -- "${SESSION}-session"
+            ;;
+        fluxbox | kde | lxde )
+            set -- "start${SESSION}"
+            ;;
+        deepin )            set -- "startdde";;
+        enlightenment )     set -- "enlightenment_start";;
+        i3 | i3wm )         set -- "i3" "--shmlog-size" "0";;
+        * )                 set -- "${SESSION}";;
+    esac
+
+    dbus_launch --sh-syntax --exit-with-session "${@}"
+}
+
+for i in "/etc/X11/xinit" "${HOME}"; do
+    [[ -s "${i}/.Xresources" ]] && xrdb -merge "${i}/.Xresources"
+    [[ -s "${i}/.Xmodmap" ]] && xmodmap "${i}/.Xmodmap"
+done
+
+if [[ -d "/etc/X11/xinit/xinitrc.d" ]]; then
+    while read -r i; do
+        source "${i}"
+    done < <(find "/etc/X11/xinit/xinitrc.d" -type f -name '*.sh')
+fi
+
+xrdb -load -I"${XDG_CONFIG_HOME:-$HOME/.config}/xorg"
+
+unset i
+get_session

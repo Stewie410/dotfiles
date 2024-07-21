@@ -1,0 +1,23 @@
+# vi: ft=i3config
+
+set $MOD Mod1
+set $SUPER Mod4
+
+set $TERM alacritty
+set $BROWSER firefox
+set $LAUNCHER dmenu_run
+set $FILE_MANAGER $TERM -e ranger
+
+set $WS_WEB 2
+set $WS_CODE 5
+set $WS_SECURITY 6
+set $WS_COMMUNICATION 7
+set $WS_EMAIL 8
+set $WS_MUSIC 10
+
+include ~/.config/i3/xorg
+include ~/.config/i3/settings
+include ~/.config/i3/colorscheme
+include ~/.config/i3/window
+include ~/.config/i3/keymap
+include ~/.config/i3/autostart

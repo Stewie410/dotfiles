@@ -1,0 +1,21 @@
+#define COLOR_00 #01060e
+#define COLOR_01 #ea6c73
+#define COLOR_02 #91b362
+#define COLOR_03 #f9af4f
+#define COLOR_04 #53bdfa
+#define COLOR_05 #fae994
+#define COLOR_06 #90e1c6
+#define COLOR_07 #c7c7c7
+#define COLOR_08 #686868
+#define COLOR_09 #f07171
+#define COLOR_10 #c2d94c
+#define COLOR_11 #ffb454
+#define COLOR_12 #59c2ff
+#define COLOR_13 #ffee99
+#define COLOR_14 #95e6cb
+#define COLOR_15 #ffffff
+
+#define COLOR_BACKGROUND #0a0e14
+#define COLOR_FOREGROUND #b3b1ad
+#define COLOR_BORDER COLOR_08
+#define COLOR_CURSOR COLOR_13
