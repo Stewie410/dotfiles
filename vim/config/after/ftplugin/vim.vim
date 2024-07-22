@@ -1,0 +1,2 @@
+inoremap <buffer> \" \"
+set nosmartindent

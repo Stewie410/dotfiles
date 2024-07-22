@@ -1,0 +1,1 @@
+command FTD filetype detect
