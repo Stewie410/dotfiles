@@ -1,0 +1,4 @@
+linux:
+  config: ${{ XDG_CONFIG_HOME }}/xorg
+  Xresources: ~/.Xresources
+  xinitrc: ~/.xinitrc

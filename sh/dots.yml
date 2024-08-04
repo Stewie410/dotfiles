@@ -1,0 +1,4 @@
+linux:
+  profile: ~/.profile
+wsl:
+  profile: ~/.profile

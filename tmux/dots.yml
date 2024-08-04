@@ -1,0 +1,4 @@
+linux:
+  tmux.conf: ~/.tmux.conf
+wsl:
+  tmux.conf: ~/.tmux.conf

@@ -1,0 +1,6 @@
+linux:
+  config: ~/.vim
+wsl:
+  config: ~/.vim
+windows:
+  config: ~/.vim

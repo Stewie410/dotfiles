@@ -1,0 +1,4 @@
+linux:
+  config: ${{ XDG_CONFIG_HOME }}/NuGet
+wsl:
+  config: ${{ XDG_CONFIG_HOME }}/NuGet

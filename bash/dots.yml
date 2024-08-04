@@ -1,0 +1,8 @@
+linux:
+  config: ${{ XDG_CONFIG_HOME }}/bash
+  bash_logout: ~/.bash_logout
+  bashrc: ~/.bashrc
+wsl:
+  config: ${{ XDG_CONFIG_HOME }}/bash
+  bash_logout: ~/.bash_logout
+  bashrc: ~/.bashrc
