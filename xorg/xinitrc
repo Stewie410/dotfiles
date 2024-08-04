@@ -18,6 +18,8 @@ get_session() {
     dbus_launch --sh-syntax --exit-with-session "${@}"
 }
 
+xrdb -load -I"${XDG_CONFIG_HOME:-$HOME/.config}/xorg"
+
 for i in "/etc/X11/xinit" "${HOME}"; do
     [[ -s "${i}/.Xresources" ]] && xrdb -merge "${i}/.Xresources"
     [[ -s "${i}/.Xmodmap" ]] && xmodmap "${i}/.Xmodmap"
@@ -28,8 +30,6 @@ if [[ -d "/etc/X11/xinit/xinitrc.d" ]]; then
         source "${i}"
     done < <(find "/etc/X11/xinit/xinitrc.d" -type f -name '*.sh')
 fi
-
-xrdb -load -I"${XDG_CONFIG_HOME:-$HOME/.config}/xorg"
 
 unset i
 get_session
