@@ -44,6 +44,8 @@ parse_config() {
         arr["${k}"]="${v}"
     done < <(awk --assign "WSL=${is_wsl:-0}" '
         function platform_compat(platform) {
+            if (platform == "any")
+                return true
             if (WSL == 1)
                 return platform == "wsl"
             return platform == "linux"
@@ -75,11 +77,11 @@ parse_config() {
             next
         }
 
-        /^.*?: (.+/?)+/ {
+        /^.*?: (.+?)+/ {
             key = get_key($0)
             val = trim(expand(get_val($0)), "\"")
             if (platform_compat(key))
-                print key "." item " = " val
+                print item " = " val
         }
     ' "${1}")
 }
@@ -89,18 +91,18 @@ install_module() {
     local -A config
 
     if ! [[ -s "${1}/dots.yml" ]]; then
-        printf 'No yaml (config) in module: %s\n' "${1##*/}" >&2
+        printf '[%s] No dots.yml in module.\n' "${1##*/}" >&2
         return 1
     fi
 
     parse_config "${repo}/dots.yml" config || return 1
     if (( ${#config[@]} == 0 )); then
-        printf 'No compatible paths in config.\n' >&2
+        printf '[%s] No compatible paths.\n' "${1##*/}" >&2
         return 1
     fi
 
     for k in "${!config[@]}"; do
-        printf 'Installing %s: ' "${1##*/}/${k}"
+        printf '[%s] Installing "%s":\t' "${1##*/}" "${k}"
         if ln --symbolic --force "${1}/${k#*.}" "${config["${k}"]}"; then
             printf '[%s%s%s]\n' $'\e[31m' "FAIL" $'\e[0'
             err="1"
