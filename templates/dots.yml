@@ -1,6 +1,2 @@
-windows:
-  config: ${{ XDG_CONFIG_HOME }}/templates
-linux:
-  config: ${{ XDG_CONFIG_HOME }}/templates
-wsl:
-  config: ${{ XDG_CONFIG_HOME }}/templates
+config:
+  any: ${{ XDG_CONFIG_HOME }}/templates

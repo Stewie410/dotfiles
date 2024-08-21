@@ -1,4 +1,3 @@
-linux:
-  tmux.conf: ~/.tmux.conf
-wsl:
-  tmux.conf: ~/.tmux.conf
+tmux.conf:
+  linux: ${{ HOME }}/.tmux.conf
+  wsl: ${{ HOME }}/.tmux.conf

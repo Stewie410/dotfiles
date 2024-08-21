@@ -1,2 +1,2 @@
-wsl:
-  wsl.conf: /etc/wsl.conf
+wsl.conf:
+  wsl: /etc/wsl.conf

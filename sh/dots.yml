@@ -1,4 +1,3 @@
-linux:
-  profile: ~/.profile
-wsl:
-  profile: ~/.profile
+profile:
+  linux: ${{ HOME }}/.profile
+  wsl: ${{ HOME }}/.profile
