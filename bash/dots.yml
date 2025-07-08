@@ -1,9 +1,0 @@
-config:
-  linux: ${{ XDG_CONFIG_HOME }}/bash
-  wsl: ${{ XDG_CONFIG_HOME }}/bash
-bash_logout:
-  linux: ${{ HOME }}/.bash_logout
-  wsl: ${{ HOME }}/.bash_logout
-bashrc:
-  linux: ${{ HOME }}/.bashrc
-  wsl: ${{ HOME }}/.bashrc

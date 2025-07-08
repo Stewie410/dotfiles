@@ -1,3 +1,0 @@
-profile:
-  linux: ${{ HOME }}/.profile
-  wsl: ${{ HOME }}/.profile

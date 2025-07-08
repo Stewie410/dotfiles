@@ -1,2 +1,0 @@
-gestures.conf:
-  linux: ${{ XDG_CONFIG_HOME }}/libinput-gestures.conf

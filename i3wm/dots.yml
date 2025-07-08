@@ -1,2 +1,0 @@
-config:
-  linux: ${{ XDG_CONFIG_HOME }}/i3

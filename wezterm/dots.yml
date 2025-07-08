@@ -1,2 +1,0 @@
-config:
-  any: ${{ XDG_CONFIG_DIR }}/wezterm

@@ -1,7 +1,0 @@
-# C:\Users\rapaa\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-config:
-  any: ${{ XDG_CONFIG_HOME }}/pwsh
-profile.ps1:
-  linux: ${{ XDG_CONFIG_HOME }}/powershell/Microsoft.PowerShell_profile.ps1
-  wsl: ${{ XDG_CONFIG_HOME }}/powershell/Microsoft.PowerShell_profile.ps1
-  win32: ${{ HOME }}/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
