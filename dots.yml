@@ -52,10 +52,6 @@ wezterm:
   windows: true
   dots:
     config: ~/.config/wezterm
-wsl:
-  windows: false
-  dots:
-    wsl.conf: /etc/wsl.conf
 xorg:
   windows: false
   dots:
