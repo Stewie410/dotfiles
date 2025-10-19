@@ -4,18 +4,27 @@
 # Skip customizations in a non-interactive shell
 [[ "$-" != *i* ]] && return
 
-JAVA_HOME="$(readlink --canonicalize '/usr/bin/java' 2>/dev/null)"
-export JAVA_HOME="${JAVA_HOME%/bin/java}"
+java="$(readlink --canonicalize "$(command -v 'java')" 2>/dev/null)"
+[[ -n "${java}" && -s "${java}" ]] &&
+    export JAVA_HOME="${java%/bin/java}"
+unset java
+
 export PYENV_ROOT="${HOME}/.pyenv"
 
 PATH+=":${HOME}/.cargo/bin"
 PATH+=":${HOME}/.local/bin"
-PATH+=":${HOME}/go/bin"
 PATH+=":/usr/local/go/bin"
+PATH+=":${HOME}/go/bin"
+PATH+=":${HOME}/.yarn/bin"
+# PATH+=":${PYENV_ROOT}/bin"
 PATH+=":/opt/nvim"
 export PATH
 
-export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
+bat="$(command -v 'bat')" ||
+    bat="$(command -v 'batcat')"
+export MANPAGER="sh -c 'col -bx | ${bat} --language man --plain'"
+export MANROFFOPT="-c"
+unset bat
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
@@ -25,19 +34,19 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
-
 export SSH_HOME="${HOME}/.ssh"
 export SSH_WORK_HOME="${SSH_HOME}/work"
 export SSH_AUTH_SOCK="${SSH_HOME}/agent.sock"
 
 export HISTSIZE=""
 export HISTFILESIZE=""
-export HISTCONTROL="ignoreboth,reasedups"
+export HISTCONTROL="ignoreboth:ereasedups"
 export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 
 export EDITOR="nvim"
+# export FILE_MANAGER="explorer.exe"
 export TERM="${TERM:-xterm-256color}"
-export BROWSER="firefox"
+export BROWSER="librewolf"
 export COLORTERM="truecolor"
 
 export LESS="--RAW-CONTROL-CHARS --ignore-case"
@@ -45,17 +54,12 @@ export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;36m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[1;44;33m'
-export LESS_TERMCAP_se="${LESS_TERMCAP_me}"
+export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
-export LESS_TERMCAP_ue="${LESS_TERMCAP_me}"
+export LESS_TERMCAP_ue=$'\e[0m'
 
-while read -r REPLY; do
-    source "${REPLY}"
-done < <(find "${BASH_CONFIG_HOME}" \
-    -mindepth 2 \
-    -maxdepth 2 \
-    -type f \
-    -iname '*.sh' \
-)
+export SDKMAN_DIR="${HOME}/.sdkman"
 
-source "${HOME}/.cargo/env"
+source "${BASH_CONFIG_HOME}/import.sh"
+
+eval "$(starship init bash)"

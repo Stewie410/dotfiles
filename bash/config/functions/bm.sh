@@ -4,13 +4,10 @@
 
 bm() {
     show_help() {
-        cat << EOF
+        cat <<EOF
 Simple 'cd' bookmarks
 
-USAGE:  ${FUNCNAME[1]} [OPTIONS] [ACTION] BOOKMARK
-        ${FUNCNAME[1]} [OPTIONS] edit|ls
-        ${FUNCNAME[1]} [OPTIONS] rm BOOKMARK [...]
-        ${FUNCNAME[1]} [OPTIONS] add|update PATH BOOKMARK
+USAGE:  ${FUNCNAME[1]} [OPTIONS] [COMMAND] MARK
 
 OPTIONS:
     -h, --help              Show this help message
@@ -18,94 +15,100 @@ OPTIONS:
                             (default: \$XDG_CONFIG_HOME/bm/marks.rc)
 
 ACTIONS:
-    <none>                  cd to BOOKMARK (default action)
+    [cd]                    cd to BOOKMARK (default action)
+    pushd                   pushd to MARK
     edit                    Open config file in \$EDITOR
     ls                      Print bookmarks to stdout
     rm                      Remove all specified BOOKMARK
-    add, update PATH        Set BOOKMARK as PATH
+    add PATH                Set BOOKMARK as PATH
 EOF
     }
 
-    is_defined() {
-        [[ -n "${marks["$1"]}" ]] && return 0
-        printf 'Bookmark is not defined: %s\n' "${1}" >&2
-        return 1
-    }
-
-    real_path() {
+    _real() {
         # TODO: realpath is not portable
         realpath --canonicalize-missing "${1}" && return 0
         printf 'Cannot parse path: %s\n' "${1}" >&2
         return 1
     }
 
-    parse() {
-        local k v
-        while read -r k _ v; do
-            [[ "${k}" =~ ^\s*(#.*)?$ ]] && continue
-            marks["${k}"]="${v% #*}"
-        done < "${config}"
-    }
-
-    show() {
+    _show() {
         local k
         for k in "${!marks[@]}"; do
             printf '%s = %s\n' "${k}" "${marks["$k"]}"
         done
     }
 
-    remove() {
-        if [[ -z "${1}" ]]; then
-            printf 'At least one bookmark must be specified\n' >&2
-            return 1
-        fi
-
-        parse
-        while (( $# > 0 )); do
-            is_defined "${1}" && unset "marks[${1}]"
-            shift
-        done
-        show > "${config}"
+    _parse() {
+        local k v
+        while read -r k _ v; do
+            [[ "${k}" == "#"* ]] && continue
+            marks["${k}"]="${v% #*}"
+        done <"${1}"
     }
 
-    add() {
-        if (( $# < 2 )); then
-            printf 'Must specify both a PATH & BOOKMARK\n' >&2
+    _rm() {
+        if (($# == 0)); then
+            printf 'Must specify at least one MARK to remove\n' >&2
             return 1
         fi
 
-        parse
-        marks["${2}"]="$(real_path "${1}")" || return 1
-        show > "${config}"
+        while (($# > 0)); do
+            unset "marks[${1}]" &>/dev/null
+            shift
+        done
+
+        _show >"${config}"
+    }
+
+    _add() {
+        if (($# < 2)); then
+            printf 'Must specify a MARK for PATH\n' >&2
+            return 1
+        fi
+
+        marks["${2}"]="$(_real "${1}")" || return 1
+        _show >"${config}"
+    }
+
+    _nav() {
+        [[ "${1,,}" != "cd" && "${1,,}" != "pushd" ]] &&
+            set -- "cd" "${@}"
+
+        if (($# == 1)); then
+            printf 'Must specify MARK\n' >&2
+            return 1
+        elif [[ -z "${marks["$2"]}" ]]; then
+            printf 'MARK not defined: %s\n' "${2}" >&2
+            return 1
+        fi
+
+        "${1}" "${marks["$2"]}" || return 1
     }
 
     local -A marks
-    local config
+    local k v config
 
-    config="${BM_RC:-${XDG_CONFIG_HOME:-$HOME/.config}/bm/marks.rc}"
+    config="${XDG_CONFIG_HOME:-$HOME/.config}/bm/marks.rc"
 
-    case "${1}" in
-        -h | --help )   show_help; return 0;;
-        -c | --config ) config="$(real_path "${2}")" || return 1; shift 2;;
-    esac
+    if [[ "${1}" == "-h" || "${1}" == "--help" ]]; then
+        show_help
+        return 0
+    elif [[ "${1}" == "-c" || "${1}" == "--config" ]]; then
+        config="$(_real "${2}")" || return 1
+        shift 2
+    fi
 
     mkdir --parents "${config%/*}"
     touch -a "${config}"
+    _parse "${config}"
 
     case "${1,,}" in
-        edit )          "${EDITOR:-editor}" "${config}" || return 1;;
-        ls )            cat "${config}";;
-        rm )            shift; remove "${@}" || return 1;;
-        add | update )  shift; add "${@}" || return 1;;
-        * )
-            parse
-            is_defined "${1}" || return 1
-            cd "${marks["$1"]}" || return 1
-            ;;
+    edit) "${EDITOR:-editor}" "${config}" || return 1 ;;
+    ls) cat "${config}" ;;
+    rm) _rm "${@:2}" || return 1 ;;
+    add) _add "${@:2}" || return 1 ;;
+    *) _nav "${@}" || return 1 ;;
     esac
-}
 
-alias bml='bm ls'
-alias bme='bm edit'
-alias bma='bm add'
-alias bmr='bm rm'
+    return 0
+}

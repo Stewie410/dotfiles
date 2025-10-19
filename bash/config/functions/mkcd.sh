@@ -1,52 +1,77 @@
 #!/usr/bin/env bash
-#
-# make and change directory
 
 mkcd() {
-    real_path() {
-        # TODO: realpath is not portable
+    _show_help() {
+        cat <<EOF
+Make and change directory
+
+USAGE: ${FUNCNAME[1]} [OPTIONS] PATH
+
+OPTIONS:
+    -h, --help          Show this help message
+    -p, --pushd         pushd into directory, instead of cd
+    -d, --date DATE     Make and change to DATE's working directory (see -w)
+    -w, --working PATH  Use PATH as working directory parent
+                        (default: \$WORKING_DIR || ~/working)
+EOF
+    }
+
+    _fdate() {
+        date --date="${1}" --iso-8601
+    }
+
+    # TODO: realpath is not portable
+    _real() {
         realpath --canonicalize-missing "${1}" && return 0
         printf 'Cannot resolve path: %s\n' "${1}" >&2
         return 1
     }
 
-    if [[ -z "${1}" ]]; then
-        printf 'No path specified\n' >&2
-        return 1
-    elif [[ "${1}" == "-h" || "${1}" == "--help" ]]; then
-        cat << EOF
-Make and change directory
+    local opts date working action
+    action="cd"
+    working="${WORKING_DIR:-$HOME/working}"
+    opts="$(
+        getopt \
+            --options hpd:w: \
+            --longoptions help,pushd,date:,working: \
+            --name "${FUNCNAME[0]}" \
+            -- "${@}"
+    )"
 
-USAGE: ${FUNCNAME[0]} [-h|--help] PATH
-EOF
-        return 0
-    fi
+    eval set -- "${opts}"
+    while true; do
+        case "${1}" in
+        -h | --help)
+            _show_help
+            return 0
+            ;;
+        -p | --pushd) action="pushd" ;;
+        -d | --date)
+            date="$(_fdate "${2}")" || return 1
+            shift
+            ;;
+        -w | --working)
+            working="$(_real "${2}")" || return 1
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *) break ;;
+        esac
+        shift
+    done
 
-    local p
-    p="$(real_path "${1}")" || return 1
+    [[ -n "${date}" ]] && set -- "${working}/${date}"
+    mkdir --parents "${1}" || return 1
 
-    mkdir --parents "${p}" || return 1
-    cd "${p}" || return 1
+    case "${action}" in
+    cd) cd "${1}" || return 1 ;;
+    pushd) pushd "${1}" || return 1 ;;
+    esac
+
+    return 0
 }
 
-mdod() {
-    if [[ -z "${1}" ]]; then
-        printf 'Date string must be specified\n' >&2
-        return 1
-    elif [[ "${1}" == "-h" || "${1}" == "--help" ]]; then
-        cat << EOF
-Make and change to DATE's working directory
-
-USAGE: ${FUNCNAME[0]} [-h|--help] DATE
-EOF
-        return 0
-    fi
-
-    local d
-    d="$(date --date="${1}" --iso-8601)"
-
-    mkcd "${WORKING_DIR:-$HOME/working}/${d}"
-}
-
-alias mdot='mdod today'
-alias mdoy='mdod yesterday'
+alias mdot='mkcd -d today'
