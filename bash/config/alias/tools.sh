@@ -7,9 +7,6 @@ command -v 'bat' &>/dev/null ||
 
 alias che='chezmoi'
 
-alias xelatexmk='latexmk -xelatexmk'
-alias cld='xelatexmk -f -synctex=1 interaction=nonstopmode'
-
 alias ssha='ssh -o "User=root"'
 alias scpa='scp -o "User=root"'
 

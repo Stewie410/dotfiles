@@ -16,7 +16,6 @@ source "${BASH_CONFIG_HOME}/alias/tools.sh"
 source "${BASH_CONFIG_HOME}/alias/dev.sh"
 
 source "${BASH_CONFIG_HOME}/functions/bm.sh"
-source "${BASH_CONFIG_HOME}/functions/cheat.sh"
 source "${BASH_CONFIG_HOME}/functions/mkcd.sh"
 
 [[ -s "${HOME}/.cargo/env" ]] &&
