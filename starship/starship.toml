@@ -1,0 +1,13 @@
+[custom.svn_revision]
+description = "Show SVN global/local revision for the current working directory when visiting a WC"
+when = "svn --non-interactive info >/dev/null 2>&1"
+command = "$XDG_CONFIG_HOME/starship/svn/revision.sh"
+symbol = "🔀"
+format = '[$symbol ($output)](bold purple) '
+
+[custom.svn_status]
+description = "Show a summary of SVN status flags for the current working directory when visiting a WC"
+when = "$XDG_CONFIG_HOME/starship/svn/status.sh >/dev/null 2>&1"
+command = "$XDG_CONFIG_HOME/starship/svn/status.sh stats"
+symbol = "📋"
+format = '[$symbol ($output)](bold blue) '
