@@ -8,7 +8,6 @@ source "${BASH_CONFIG_HOME}/modules/lesspipe.sh"
 
 if [[ "$(uname --kernel-release)" == *"WSL2"* ]]; then
     source "${BASH_CONFIG_HOME}/modules/wsl/ssh.sh"
-    source "${BASH_CONFIG_HOME}/modules/wsl/vpn.sh"
 fi
 
 source "${BASH_CONFIG_HOME}/alias/core.sh"
