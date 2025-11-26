@@ -1,24 +1,21 @@
 #!/usr/bin/env bash
 
-# alias apt-list='apt-mark showmanual'
+command -v 'apt-mark' &>/dev/null \
+    && alias apt-list='apt-mark showmanual'
 
-command -v 'bat' &>/dev/null ||
-    alias bat='batcat'
+command -v 'bat' &>/dev/null \
+    || alias bat='batcat'
 
-alias che='chezmoi'
+alias cm='chezmoi'
 
 alias ssha='ssh -o "User=root"'
 alias scpa='scp -o "User=root"'
 
-alias sshw='ssh -F ~/.ssh/work.conf'
-alias scpw='scp -F ~/.ssh/work.conf'
+alias sshw='ssh -F ${SSH_HOME}/work.conf'
+alias scpw='scp -F ${SSH_HOME}/work.conf'
 
-alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
 
-alias ytdl='yt-dlp'
-alias ytdla='yt-dlp --extract-audio'
-
-alias csf='curl --silent --fail'
-alias wttr='csf wttr.in'
-alias pubip='csf ipinfo.io/ip'
-alias ipinfo='csf ipinfo.io/json'
+alias wttr='curl -sf wttr.in'
+alias pubip='curl -sf ipinfo.io/ip'
+alias ipinfo='curl -sf ipinfo.io/json'

@@ -1,42 +1,30 @@
 #!/usr/bin/env bash
-# shellcheck source=/dev/null
-
-# Skip customizations in a non-interactive shell
-[[ "$-" != *i* ]] && return
-
-java="$(readlink --canonicalize "$(command -v 'java')" 2>/dev/null)"
-[[ -n "${java}" && -s "${java}" ]] &&
-    export JAVA_HOME="${java%/bin/java}"
-unset java
-
-export PYENV_ROOT="${HOME}/.pyenv"
-
-PATH+=":${HOME}/.cargo/bin"
-PATH+=":${HOME}/.local/bin"
-PATH+=":/usr/local/go/bin"
-PATH+=":${HOME}/go/bin"
-PATH+=":${HOME}/.yarn/bin"
-# PATH+=":${PYENV_ROOT}/bin"
-PATH+=":/opt/nvim"
-export PATH
-
-bat="$(command -v 'bat')" ||
-    bat="$(command -v 'batcat')"
-export MANPAGER="sh -c 'col -bx | ${bat} --language man --plain'"
-export MANROFFOPT="-c"
-unset bat
+# shellcheck source=/dev/null disable=SC2155
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
+[[ "$-" != *"i"* ]] && return
+
+PATH+=":${HOME}/.cargo/bin"
+PATH+=":${HOME}/.local/bin"
+PATH+=":/usr/local/go/bin"
+PATH+=":${HOME}/go/bin"
+PATH+=":${HOME}/.yarn/bin"
+PATH+=":/opt/nvim"
+export PATH
+
+mapfile -t bat < <(command -v 'bat' 'batcat')
+export MANPAGER="sh -c 'col -bx | ${bat[0]} --language man --plain'"
+export MANROFFOPT="-c"
+unset bat
+
 export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
-export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
+export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
-export SSH_WORK_HOME="${SSH_HOME}/work"
-export SSH_AUTH_SOCK="${SSH_HOME}/agent.sock"
 
 export HISTSIZE=""
 export HISTFILESIZE=""
@@ -44,7 +32,7 @@ export HISTCONTROL="ignoreboth:ereasedups"
 export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 
 export EDITOR="nvim"
-# export FILE_MANAGER="explorer.exe"
+export FILE_MANAGER="pcmanfm"
 export TERM="${TERM:-xterm-256color}"
 export BROWSER="librewolf"
 export COLORTERM="truecolor"

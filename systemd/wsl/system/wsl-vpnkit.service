@@ -1,0 +1,11 @@
+[Unit]
+Description=Enable WSL routing through Windows VPNs
+After=network.target
+
+[Service]
+ExecStart=/mnt/c/Windows/System32/wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit
+Restart=always
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

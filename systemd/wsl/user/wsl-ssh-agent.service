@@ -1,0 +1,12 @@
+[Unit]
+Description=Windows SSH Agent Proxy via npiperelay & socat
+StartLimitIntervalSec=0
+
+[Service]
+Delegate=true
+Type=exec
+KillMod=process
+ExecStart=/usr/bin/socat UNIX-LISTEN:'/run/user/1000/wsl-ssh-agent.sock',fork EXEC:'/mnt/c/Users/rapaa/AppData/Local/Microsoft/WinGet/Links/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent',nofork
+
+[Install]
+WantedBy=default.target

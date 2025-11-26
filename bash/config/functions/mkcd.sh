@@ -1,77 +1,67 @@
 #!/usr/bin/env bash
 
 mkcd() {
-    _show_help() {
+    _usage() {
         cat <<EOF
 Make and change directory
 
-USAGE: ${FUNCNAME[1]} [OPTIONS] PATH
+USAGE: mkcd [OPTIONS] PATH
 
 OPTIONS:
     -h, --help          Show this help message
-    -p, --pushd         pushd into directory, instead of cd
     -d, --date DATE     Make and change to DATE's working directory (see -w)
+    -p, --push          Use 'pushd' instead of 'cd'
     -w, --working PATH  Use PATH as working directory parent
-                        (default: \$WORKING_DIR || ~/working)
+                        (default: \$WORKING_DIR or ~/working)
 EOF
+    }
+
+    _err() {
+        printf '\e[0;31mERROR\e[0m: %s\n' "${@}" >&2
     }
 
     _fdate() {
         date --date="${1}" --iso-8601
     }
 
-    # TODO: realpath is not portable
     _real() {
-        realpath --canonicalize-missing "${1}" && return 0
-        printf 'Cannot resolve path: %s\n' "${1}" >&2
+        readlink --canonicalize-missing "${1}" && return 0
+        _err "Cannot resolve path: ${1}"
         return 1
     }
 
-    local opts date working action
-    action="cd"
-    working="${WORKING_DIR:-$HOME/working}"
+    local opts date wd push
+    wd="${WORKING_DIR:-$HOME/working}"
     opts="$(
         getopt \
             --options hpd:w: \
-            --longoptions help,pushd,date:,working: \
-            --name "${FUNCNAME[0]}" \
+            --longoptions help,push,date:,working: \
+            --name 'mkcd' \
             -- "${@}"
     )"
 
     eval set -- "${opts}"
     while true; do
         case "${1}" in
-        -h | --help)
-            _show_help
-            return 0
-            ;;
-        -p | --pushd) action="pushd" ;;
-        -d | --date)
-            date="$(_fdate "${2}")" || return 1
-            shift
-            ;;
-        -w | --working)
-            working="$(_real "${2}")" || return 1
-            shift
-            ;;
-        --)
-            shift
-            break
-            ;;
-        *) break ;;
+            -h | --help )       _usage; return 0;;
+            -d | --date )       date="$(_fdate "${2}")" || return 1; shift;;
+            -w | --working )    wd="$(_real "${2}")" || return 1; shift;;
+            -p | --push )       push="1";;
+            -- )                shift; break;;
+            * )                 break;;
         esac
         shift
     done
 
-    [[ -n "${date}" ]] && set -- "${working}/${date}"
+    [[ -n "${date}" ]] && set -- "${wd}/${date}"
     mkdir --parents "${1}" || return 1
-
-    case "${action}" in
-    cd) cd "${1}" || return 1 ;;
-    pushd) pushd "${1}" || return 1 ;;
-    esac
-
+    if [[ -n "${push}" ]]; then
+        pushd "${1}" || return 1
+    else
+        cd "${1}" || return 1
+    fi
     return 0
 }
 
-alias mdot='mkcd -d today'
+alias mkpd='mkcd -p'
+alias mdot='mkcd -pd today'

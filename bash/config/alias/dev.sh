@@ -3,7 +3,6 @@
 alias git='git --no-pager'
 alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
 
-# alias vv='vim -u NONE'
 alias nv='nvim -u NONE'
 
 alias hf='hyperfine'
