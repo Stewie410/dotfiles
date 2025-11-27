@@ -1,9 +1,9 @@
 [custom.svn_revision]
 description = "SVN Repository & Revision Indicator"
 when = "svn --non-interactive info >/dev/null 2>&1"
-command = "svn --non-interactive info --no-newline --show-item --revision 2>/dev/null"
+command = "svn --non-interactive info --no-newline --show-item revision 2>/dev/null"
 symbol = ""
-format = "[$symbol r$output](bold purple)"
+format = "[($symbol r$output)](bold purple) "
 
 [custom.svn_status]
 when = "svn --non-interactive info >/dev/null 2>&1"
