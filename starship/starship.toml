@@ -6,7 +6,7 @@ symbol = ""
 format = "[$symbol r$output](bold purple)"
 
 [custom.svn_status]
-when "svn --non-interactive info >/dev/null 2>&1"
+when = "svn --non-interactive info >/dev/null 2>&1"
 description = "Symbol indicator of pending changes"
 command = "$XDG_CONFIG_HOME/starship/svn_status.sh"
 format = "[(\\[$output\\])](bold red)"
