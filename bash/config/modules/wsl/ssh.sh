@@ -16,3 +16,4 @@ _check_service() {
 
 _check_service \
     && export SSH_AUTH_SOCK='/run/user/1000/wsl-ssh-agent.sock'
+unset -f '_check_service'
