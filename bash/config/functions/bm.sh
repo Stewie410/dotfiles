@@ -8,11 +8,11 @@ bm() {
         cat <<EOF
 Simple 'cd' bookmarks
 
-USAGE:  bm [OPTIONS] [cd|nav]|pushd MARK[/PATH]
+USAGE:  bm [OPTIONS] [cd]|pushd MARK[/PATH]
         bm [OPTIONS] edit
-        bm [OPTIONS] ls|list|print
-        bm [OPTIONS] rm|rem|def MARK [MARK [...]]
-        bm [OPTIONS] set|add|update PATH MARK
+        bm [OPTIONS] [ls]
+        bm [OPTIONS] rm MARK [MARK [...]]
+        bm [OPTIONS] add PATH MARK
 
 OPTIONS:
     -h, --help              Show this help message
@@ -76,14 +76,16 @@ EOF
     mkdir --parents "${config%/*}"
     touch -a "${config}"
 
+    set -- "${1:-default}" "${@:2}"
+
     case "${1,,}" in
         edit )
             "${EDITOR:-editor}" "${config}" || return 1
             ;;
-        ls | list | print )
+        ls | default )
             cat "${config}"
             ;;
-        rm | rem | del )
+        rm )
             shift
             if (( $# == 0 )); then
                 _err "Must specify at least one MARK"
@@ -104,7 +106,7 @@ EOF
             _fmt > "${config}"
             (( count == 0 )) || return 1
             ;;
-        set | add | update )
+        add )
             shift
             if (( $# != 2 )); then
                 _err "Must specify both PATH and MARK"
