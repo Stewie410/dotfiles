@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 
-_gh_connected() {
-    while read -r REPLY; do
-        [[ "${REPLY,,}" == *"logged in to github"* ]] && return 0
-    done < <(gh auth status)
-    return 1
-}
-
-_gh_login() {
-    gh auth login --with-token < "${HOME}/.secrets/gh_auth"
-}
-
-_gh_connected || _gh_login
-unset -f '_gh_connected' '_gh_login'
+if command -v 'gh' &>/dev/null; then
+    token="${HOME}/.secrets/gh_auth"
+    if [[ -s "${token}" ]]; then
+        mapfile -t gh_auth < <(gh auth status 2>&1)
+        if [[ "${gh_auth[*],,}" != *"logged in to github"* ]]; then
+            gh auth login --with-token < "${token}"
+        fi
+    fi
+    unset token gh_auth
+fi
