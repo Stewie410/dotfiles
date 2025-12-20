@@ -17,14 +17,21 @@ PATH+=":/opt/nvim"
 export PATH
 
 mapfile -t bat < <(command -v 'bat' 'batcat')
-export MANPAGER="sh -c 'col -bx | ${bat[0]} --language man --plain'"
-export MANROFFOPT="-c"
+if (( ${#bat[@]} > 0 )); then
+    export MANPAGER="sh -c 'col -bx | ${bat[0]} --language man --plain'"
+    export MANROFFOPT="-c"
+fi
+if [[ "${bat[0]}" != *"/bat" ]]; then
+    # shellcheck disable=SC2139
+    alias bat="${bat[0]}"
+fi
 unset bat
 
 export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
+export SSH_AUTH_SOCK="/run/user/${UID}/wsl-ssh-agent.sock"
 
 export HISTSIZE=""
 export HISTFILESIZE=""
@@ -37,6 +44,11 @@ export TERM="${TERM:-xterm-256color}"
 export BROWSER="librewolf"
 export COLORTERM="truecolor"
 
+if [[ -n "${WSL_DISTRO_NAME}" ]]; then
+    export FILE_MANAGER="/mnt/c/Windows/explorer.exe"
+    export BROWSER="/mnt/c/Program Files/LibreWolf/librewolf.exe"
+fi
+
 export LESS="--RAW-CONTROL-CHARS --ignore-case"
 export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;36m'
@@ -46,8 +58,24 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
 export LESS_TERMCAP_ue=$'\e[0m'
 
-export SDKMAN_DIR="${HOME}/.sdkman"
+source "${BASH_CONFIG_HOME}/shell.sh"
+source "${BASH_CONFIG_HOME}/alias.sh"
+source "${BASH_CONFIG_HOME}/functions/bm.sh"
+source "${BASH_CONFIG_HOME}/functions/mkcd.sh"
+source "${BASH_CONFIG_HOME}/tools/ssh.sh"
+source "${BASH_CONFIG_HOME}/tools/gh.sh"
 
-source "${BASH_CONFIG_HOME}/import.sh"
+if [[ -s "${HOME}/.sdkman" ]]; then
+    export SDKMAN_DIR="${HOME}/.sdkman"
+    source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi
 
-eval "$(starship init bash)"
+if [[ -s "${HOME}/.cargo/env" ]]; then
+    source "${HOME}/.cargo/env"
+fi
+
+if command -v 'starship' &>/dev/null; then
+    eval "$(starship init bash)"
+else
+    PS1="\n\[\e[1;30m\][$$:$PPID - \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY:-o} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n\$ "
+fi
