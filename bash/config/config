@@ -31,7 +31,9 @@ export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
-export SSH_AUTH_SOCK="/run/user/${UID}/wsl-ssh-agent.sock"
+if [[ -n "${WSL_DISTRO}" ]]; then
+    export SSH_AUTH_SOCK="/run/user/${UID}/wsl-ssh-agent.sock"
+fi
 
 export HISTSIZE=""
 export HISTFILESIZE=""
