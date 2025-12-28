@@ -27,12 +27,19 @@ if [[ "${bat[0]}" != *"/bat" ]]; then
 fi
 unset bat
 
+if command -v 'wslinfo' &>/dev/null; then
+    export HOST_IS_WSL="1"
+fi
+
 export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
-if [[ -n "${WSL_DISTRO}" ]]; then
+if [[ -n "${HOST_IS_WSL}" ]]; then
     export SSH_AUTH_SOCK="/run/user/${UID}/wsl-ssh-agent.sock"
+    source "${BASH_CONFIG_HOME}/tools/ssh.sh"
+elif [[ -S "${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock" ]]; then
+    export SSH_AUTH_SOCK="${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
 fi
 
 export HISTSIZE=""
@@ -64,7 +71,6 @@ source "${BASH_CONFIG_HOME}/shell.sh"
 source "${BASH_CONFIG_HOME}/alias.sh"
 source "${BASH_CONFIG_HOME}/functions/bm.sh"
 source "${BASH_CONFIG_HOME}/functions/mkcd.sh"
-source "${BASH_CONFIG_HOME}/tools/ssh.sh"
 source "${BASH_CONFIG_HOME}/tools/gh.sh"
 
 if [[ -s "${XDG_CONFIG_HOME}/private/bash/import.sh" ]]; then
