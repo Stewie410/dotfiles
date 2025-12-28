@@ -16,14 +16,14 @@ PATH+=":${HOME}/.yarn/bin"
 PATH+=":/opt/nvim"
 export PATH
 
-mapfile -t bat < <(command -v 'bat' 'batcat')
-if (( ${#bat[@]} > 0 )); then
-    export MANPAGER="sh -c 'col -bx | ${bat[0]} --language man --plain'"
+bat="$(command -v 'bat' 'batcat' 2>/dev/null)"
+if [[ -n "${bat}" ]]; then
+    export MANPAGER="sh -c 'col -bx | ${bat} --language man --plain'"
     export MANROFFOPT="-c"
-fi
-if [[ "${bat[0]}" != *"/bat" ]]; then
-    # shellcheck disable=SC2139
-    alias bat="${bat[0]}"
+    if [[ "${bat##*/}" != "bat" ]]; then
+        # shellcheck disable=SC2139
+        alias bat="${bat}"
+    fi
 fi
 unset bat
 
