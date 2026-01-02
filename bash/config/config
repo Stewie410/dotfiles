@@ -17,16 +17,14 @@ PATH+=":${HOME}/.yarn/bin"
 PATH+=":/opt/nvim"
 export PATH
 
-bat="$(command -v 'bat' 'batcat' 2>/dev/null)"
-if [[ -n "${bat}" ]]; then
-    export MANPAGER="sh -c 'col -bx | ${bat} --language man --plain'"
+if command -v 'bat' &>/dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat --language man --plain'"
     export MANROFFOPT="-c"
-    if [[ "${bat##*/}" != "bat" ]]; then
-        # shellcheck disable=SC2139
-        alias bat="${bat}"
-    fi
+elif command -v 'batcat' &>/dev/null; then
+    export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
+    export MANROFFOPT="-c"
+    alias bat='batcat'
 fi
-unset bat
 
 if command -v 'wslinfo' &>/dev/null; then
     export HOST_IS_WSL="1"
@@ -37,7 +35,7 @@ export BASH_LIB="${BASH_CONFIG_HOME}/lib"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
 if [[ -n "${HOST_IS_WSL}" ]]; then
-    export SSH_AUTH_SOCK="/run/user/${UID}/wsl-ssh-agent.sock"
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/wsl-ssh-agent.sock"
     source "${BASH_CONFIG_HOME}/tools/ssh.sh"
 elif [[ -S "${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock" ]]; then
     export SSH_AUTH_SOCK="${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
@@ -55,7 +53,7 @@ export TERM="${TERM:-xterm-256color}"
 export BROWSER="librewolf"
 export COLORTERM="truecolor"
 
-if [[ -n "${WSL_DISTRO_NAME}" ]]; then
+if [[ -n "${HOST_IS_WSL}" ]]; then
     export FILE_MANAGER="/mnt/c/Windows/explorer.exe"
     export BROWSER="/mnt/c/Program Files/LibreWolf/librewolf.exe"
 fi
