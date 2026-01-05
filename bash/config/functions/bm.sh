@@ -143,10 +143,10 @@ EOF
             _parse
             if [[ "${1}" == *"/"* ]]; then
                 _defined "${1%%/*}" || return 1
-                pushd "${marks["${1%%/*}"]}/${1#*/}" || return 1
+                cd "${marks["${1%%/*}"]}/${1#*/}" || return 1
             else
                 _defined "${1}" || return 1
-                pushd "${marks["$1"]}" || return 1
+                cd "${marks["$1"]}" || return 1
             fi
             ;;
     esac
