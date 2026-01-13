@@ -36,7 +36,6 @@ export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
 if [[ -n "${HOST_IS_WSL}" ]]; then
     export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/wsl-ssh-agent.sock"
-    source "${BASH_CONFIG_HOME}/tools/ssh.sh"
 elif [[ -S "${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock" ]]; then
     export SSH_AUTH_SOCK="${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
     alias bw="flatpak run --command=bw com.bitwarden.desktop"
