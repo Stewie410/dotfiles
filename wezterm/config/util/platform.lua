@@ -18,10 +18,10 @@ local os_name = is_win and "windows" or is_mac and "mac" or is_linux and "linux"
 ---@field is_mac boolean Platform is MacOS
 ---@field is_linux boolean Platform is (any) Linux
 return {
-	target = wezterm.target_triple,
-	os = os_name,
-	arch = arch,
-	is_win = is_win,
-	is_mac = is_mac,
-	is_linux = is_linux,
+  target = wezterm.target_triple,
+  os = os_name,
+  arch = arch,
+  is_win = is_win,
+  is_mac = is_mac,
+  is_linux = is_linux,
 }

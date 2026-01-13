@@ -7,5 +7,5 @@ local wezterm_config = wezterm.config_builder()
 ---@param config Config wezterm config options table
 ---@return Config
 function M.setup(opts)
-	local t = {}
+  local t = {}
 end

@@ -6,5 +6,5 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 ---@param MuxTabObj
 ---@return unknown
 function M.tab_title(tab)
-	return (tab.tab_title ~= nil and #tab.tab_title > 0) and tab.tab_title or tab.active_pane.title
+  return (tab.tab_title ~= nil and #tab.tab_title > 0) and tab.tab_title or tab.active_pane.title
 end
