@@ -7,7 +7,7 @@ local compat = {
   },
   mac = {},
   linux = {
-    enable_kitt_keyboard = true,
+    enable_kitty_keyboard = true,
   },
 }
 
