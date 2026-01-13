@@ -39,7 +39,7 @@ alias hnscan='nmap -sU -p137 --script nbstat.nse'
 alias shellcheck='shellcheck --color=always'
 
 # WSL
-if [[ -n "${WSL_DISTRO_NAME}" ]]; then
+if [[ -n "${HOST_IS_WSL}" ]]; then
     alias clip='/mnt/c/Windows/System32/clip.exe'
     alias explorer='/mnt/c/Windows/explorer.exe'
     # shellcheck disable=SC2139
