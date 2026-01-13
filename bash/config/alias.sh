@@ -46,3 +46,7 @@ if [[ -n "${HOST_IS_WSL}" ]]; then
     alias npiperelay="${WINHOME}/AppData/Local/Microsoft/WinGet/Links/npiperelay.exe"
     alias wezterm='/mnt/c/Program Files/WezTerm/wezterm.exe'
 fi
+
+if [[ -d "${HOME}/.var/app/org.wezfurlong.wezterm" ]]; then
+    alias wezterm="flatpak run org.wezfurlong.wezterm"
+fi
