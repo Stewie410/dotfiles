@@ -17,7 +17,7 @@ alias grep='grep --color=auto'
 
 # Tools
 alias sshw='ssh -F "${HOME}/.ssh/work.conf"'
-alias scpw='ssh -F "${HOME}/.ssh/work.conf"'
+alias scpw='scp -F "${HOME}/.ssh/work.conf"'
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/tmux.conf"'
 
