@@ -1,0 +1,24 @@
+[Unit]
+Description=FUSE mount rclone-remote to ~/mnt/%I
+Documentation=man:rclone(1)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStartPre=/usr/bin/mkdir -p "%h/mnt/%I"
+ExecStart=/usr/bin/rclone mount \
+    --config="%h/.config/rclone/rclone.conf" \
+    --vfs-cache-mode writes \
+    --vfs-cache-max-size 100M \
+    --log-level INFO \
+    --log-file "/tmp/rclone-%I.log" \
+    --umask 022 \
+    --allow-other \
+    "%I:" "%h/mnt/%I"
+ExecStop=/bin/fusermount -u "%h/mnt/%I"
+
+[Install]
+WantedBy=default.target
+
+# https://github.com/nilreml/rclone-mount-systemd
