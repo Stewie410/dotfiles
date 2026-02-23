@@ -1,0 +1,12 @@
+[Unit]
+Description=Keep WSL instance alive when all sessions closed
+
+[Service]
+Type=oneshot
+ExecStart=/mnt/c/Windows/System32/wsl.exe --exec dbus-launch true
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+# https://github.com/microsoft/WSL/issues/10138#issuecomment-3531432525
