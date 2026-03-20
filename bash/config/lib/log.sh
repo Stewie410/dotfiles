@@ -3,15 +3,11 @@
 
 # Try to determine when to print color
 #
-# @param choice "always"|"yes"|"never"|"no"|"auto"
+# @global NO_COLOR? Force-disable coloring
+# @global TERM?     Terminal name to determine color support
 #
 # @exit bool
 __logger.use_color() {
-    case "${1,,}" in
-        "always" | "yes" )  return 0;;
-        "never" | "no" )    return 1;;
-    esac
-
     # https://no-color.org/
     [[ -n "${NO_COLOR}" ]] && return 1
 
@@ -27,6 +23,46 @@ __logger.use_color() {
     fi
 
     return 1
+}
+
+# Try to set up logging facilities
+#
+# @global NO_COLOR?     Force-disable coloring
+# @global TERM?         Terminal name to determine color support
+#
+# @param logger         Logger name: logger.pretty|logger.systemd
+# @param preference     Color support preference: always|yes|never|no|auto
+# @param logfile?       Logfile path (logger.pretty only)
+#
+# shellcheck disable=SC2154
+__logger.init() {
+    # logger.systemd: no colors, no bespoke logfile
+    if [[ "${1,,}" == "logger.systemd" ]]; then
+        unset log nocolor
+        return 0
+    fi
+
+    # logger.pretty: color support
+    case "${2,,}" in
+        "always" | "yes" )  nocolor="0";;
+        "never" | "no" )    nocolor="1";;
+        "auto" )
+            __logger.use_color
+            nocolor="$?"
+            ;;
+    esac
+
+    # logger.pretty: logfile
+    if (( EUID == 0 )); then
+        log="/var/log/${log}"
+    else
+        # handle non-root logfiles
+        log="${HOME}/.local/logs/${log}"
+    fi
+    mkdir -p "${log%/*}"
+    touch -a "${log}"
+
+    return 0
 }
 
 declare -A __logger_levels=(
