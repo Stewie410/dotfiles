@@ -10,3 +10,10 @@ when = "svn --non-interactive info >/dev/null 2>&1"
 description = "Symbol indicator of pending changes"
 command = "$XDG_CONFIG_HOME/starship/svn_status.sh"
 format = "[(\\[$output\\])](bold red) "
+
+[custom.svn_behind]
+when = "svn --non-interactive info >/dev/null 2>&1"
+description = "Remote HEAD is on a higher revision"
+command = "$XDG_CONFIG_HOME/starship/svn_behind.sh"
+format = "[$output](bold yellow)"
+ignore_timeout = true
