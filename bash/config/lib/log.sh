@@ -261,7 +261,7 @@ log.systemd() {
     id="${__logger_levels["${1,,}"]%%,*}"
 
     # shellcheck disable=SC2154
-[[ "${lvl}" == "DEBUG" && "${debug}" -ne 1 ]] && return 0
+    (( id == 7 && debug != 1 )) && return 0
 
     local -a lines
     local line
