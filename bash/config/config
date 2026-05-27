@@ -66,6 +66,9 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
 export LESS_TERMCAP_ue=$'\e[0m'
 
+export SVN_EDITOR="${EDITOR}"
+export SVN_PAGER="${MANPAGER}"
+
 source "${BASH_CONFIG_HOME}/shell.sh"
 source "${BASH_CONFIG_HOME}/alias.sh"
 source "${BASH_CONFIG_HOME}/functions/bm.sh"
