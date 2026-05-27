@@ -30,13 +30,14 @@ alias git='git --no-pager'
 
 alias vv='vim -u NONE'
 alias nv='nvim -u NONE'
+#alias nv12='NVIM_APPNAME=nvim-0.12 ~/.local/appimage/nvim-0.12.0.appimage'
 
 alias compose='docker compose'
 
 alias ipscan='nmap -sn'
 alias hnscan='nmap -sU -p137 --script nbstat.nse'
 
-alias shellcheck='shellcheck --color=always'
+alias shchk='shellcheck --color=always'
 
 # WSL
 if [[ -n "${HOST_IS_WSL}" ]]; then
