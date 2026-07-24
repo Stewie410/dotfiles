@@ -4,7 +4,7 @@
 # Close logger file descriptors
 #
 # @return true
-__logger.cleanup() {
+log.cleanup() {
     exec 93>&-
     exec 96>&-
     if ((LOGGER_EXTENDED_FD == 1)); then
