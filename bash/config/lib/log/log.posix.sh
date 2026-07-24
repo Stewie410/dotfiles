@@ -32,7 +32,7 @@ __logger_use_color() {
 #
 # @global LOGGER_USE_COLOR?     Color support preference, default auto
 # @global LOGGER_LOGFILE?       Logfile path
-__logger_init() {
+log_init() {
     use_color="$(printf '%s' "${LOGGER_USE_COLOR:-auto}" | tr '[:upper:]' '[:lower:]')"
     case "${use_color}" in
         "always" | "yes")
