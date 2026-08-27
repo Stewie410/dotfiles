@@ -25,6 +25,8 @@ alias wttr='curl -sf wttr.in'
 alias pubip='curl -sf ipinfo.io/ip'
 alias ipinfo='curl -sf ipinfo.io/json'
 
+alias texmk='latexmk -xelatex -f -synctex=1 -interaction=nonstopmode'
+
 # Dev
 alias git='git --no-pager'
 
