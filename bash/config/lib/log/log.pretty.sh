@@ -73,9 +73,12 @@ log.init() {
         LOGGER_LOGFILE+="/${name%.*}/${name%.*}.log"
     fi
 
+    [[ -z "${LOGGER_LOCKFILE}" ]] \
+        && LOGGER_LOCKFILE="${XDG_STATE_HOME:-${HOME}/.local/state}/${name%.*}/log.lock"
+
     (
         set -e
-        mkdir --parents "${LOGGER_LOGFILE%/*}"
+        mkdir --parents "${LOGGER_LOGFILE%/*}" "${LOGGER_LOCKFILE%/*}"
         touch -a "${LOGGER_LOGFILE}"
     ) || return 1
 
@@ -148,8 +151,11 @@ log() {
         lines+=("${line}")
         printf -v stamp '%(%FT%T%z)T' -1
         printf '%s|%b%-9s\e[0m|%s\n' "${stamp}" "${rgb}" "${lvl}" "${line}"
-        printf '%s|%-9s|%s\n' "${stamp}" "${lvl}" "${line}" \
-            >> "${LOGGER_LOGFILE:-/dev/null}"
+        {
+            flock 200
+            printf '%s|%-9s|%s\n' "${stamp}" "${lvl}" "${line}" \
+                >> "${LOGGER_LOGFILE:-/dev/null}"
+        } 200>> "${LOGGER_LOCKFILE}"
     done
 
     declare -p 'LOGGER_ERR' &> /dev/null || return 0
