@@ -41,15 +41,6 @@ alias hnscan='nmap -sU -p137 --script nbstat.nse'
 
 alias shchk='shellcheck --color=always'
 
-# WSL
-if [[ -n "${HOST_IS_WSL}" ]]; then
-    alias clip='/mnt/c/Windows/System32/clip.exe'
-    alias explorer='/mnt/c/Windows/explorer.exe'
-    # shellcheck disable=SC2139
-    alias npiperelay="${WINHOME}/AppData/Local/Microsoft/WinGet/Links/npiperelay.exe"
-    alias wezterm='/mnt/c/Program Files/WezTerm/wezterm.exe'
-fi
-
 if [[ -d "${HOME}/.var/app/org.wezfurlong.wezterm" ]]; then
-    alias wezterm="flatpak run org.wezfurlong.wezterm"
+	alias wezterm="flatpak run org.wezfurlong.wezterm"
 fi
