@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+unset -f uuidk
+
 uuidk() {
 	_usage() {
 		cat << EOF

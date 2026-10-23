@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+unset -f mkcd
+
 mkcd() {
     _usage() {
         cat <<EOF

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+unset -f svn-ignore
+
 svn-ignore() {
 	_usage() {
 		cat <<- EOF
@@ -22,21 +24,21 @@ svn-ignore() {
 	prop='svn:ignore'
 
 	case "${1}" in
-		"-h" | "--help")
-			_usage
-			return 0
-			;;
-		"-H" | "--svn-help")
-			svn help propset
-			return 0
-			;;
-		"-g" | "--global")
-			prop='svn:global-ignores'
-			shift
-			;;
-		--)
-			shift
-			;;
+	"-h" | "--help")
+		_usage
+		return 0
+		;;
+	"-H" | "--svn-help")
+		svn help propset
+		return 0
+		;;
+	"-g" | "--global")
+		prop='svn:global-ignores'
+		shift
+		;;
+	--)
+		shift
+		;;
 	esac
 
 	if (($# < 2)); then

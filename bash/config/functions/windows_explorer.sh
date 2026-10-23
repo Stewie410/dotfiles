@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+unset -f expl
+
 expl() {
-    explorer "${@}"
-    return 0
+	explorer "${@}"
+	return 0
 }
