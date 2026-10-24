@@ -46,7 +46,7 @@ array.isort() {
 		((j = 0))
 		for ((k = i - 1; k >= 0; k--)); do
 			((arr[k] > arr[i])) &&
-				((c++))
+				((j++))
 		done
 
 		local x y
