@@ -7,6 +7,10 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 export XDG_RUNTIME_DIR="/run/user/${UID}"
 
+if command -v 'wslinfo' &> /dev/null; then
+	export HOST_IS_WSL="1"
+fi
+
 [[ "$-" != *"i"* ]] && return
 
 PATH+=":${HOME}/.cargo/bin"
@@ -16,19 +20,6 @@ PATH+=":${HOME}/go/bin"
 PATH+=":${HOME}/.yarn/bin"
 PATH+=":/opt/nvim"
 export PATH
-
-if command -v 'bat' &> /dev/null; then
-	export MANPAGER="sh -c 'col -bx | bat --language man --plain'"
-	export MANROFFOPT="-c"
-elif command -v 'batcat' &> /dev/null; then
-	export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
-	export MANROFFOPT="-c"
-	alias bat='batcat'
-fi
-
-if command -v 'wslinfo' &> /dev/null; then
-	export HOST_IS_WSL="1"
-fi
 
 export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
@@ -73,6 +64,7 @@ source "${BASH_CONFIG_HOME}/shell.sh"
 source "${BASH_CONFIG_HOME}/alias.sh"
 source "${BASH_CONFIG_HOME}/functions/init.sh"
 source "${BASH_CONFIG_HOME}/tools/gh.sh"
+source "${BASH_CONFIG_HOME}/tools/bat.sh"
 
 if [[ -s "${XDG_CONFIG_HOME}/private/bash/config" ]]; then
 	source "${XDG_CONFIG_HOME}/private/bash/config"
