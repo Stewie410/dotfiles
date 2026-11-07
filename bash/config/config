@@ -25,12 +25,6 @@ export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
 export BASH_LIB="${BASH_CONFIG_HOME}/lib"
 export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
 export SSH_HOME="${HOME}/.ssh"
-if [[ -n "${HOST_IS_WSL}" ]]; then
-	export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/wsl-ssh-agent.sock"
-elif [[ -S "${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock" ]]; then
-	export SSH_AUTH_SOCK="${HOME}/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
-	alias bw="flatpak run --command=bw com.bitwarden.desktop"
-fi
 
 export HISTSIZE=""
 export HISTFILESIZE=""
@@ -65,6 +59,7 @@ source "${BASH_CONFIG_HOME}/alias.sh"
 source "${BASH_CONFIG_HOME}/functions/init.sh"
 source "${BASH_CONFIG_HOME}/tools/gh.sh"
 source "${BASH_CONFIG_HOME}/tools/bat.sh"
+source "${BASH_CONFIG_HOME}/tools/ssh.sh"
 
 if [[ -s "${XDG_CONFIG_HOME}/private/bash/config" ]]; then
 	source "${XDG_CONFIG_HOME}/private/bash/config"
